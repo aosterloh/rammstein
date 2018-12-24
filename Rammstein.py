@@ -11,7 +11,7 @@ TwilioNumber = '+1xxxxxxxxxxxx' # Phone number given to you by Twilio
 cities = ['BERLIN', 'HAMBURG', 'FRANKFURT', 'DRESDEN', 'ROSTOCK', 'GELSENKIRCHEN', 'BARCELONA', 'COPENHAGEN', 'ROTTERDAM', 'PARIS']
 
 while True:
-    #url = 'https://www.fansale.de/fansale/tickets/hard-heavy/ozzy-osbourne/478'
+    # testurl 'https://www.fansale.de/fansale/tickets/hard-heavy/ozzy-osbourne/478'
     url = 'https://www.fansale.de/fansale/tickets/alle/rammstein/526'
     client = Client(account_sid, auth_token)
     response = requests.get(url)
@@ -22,7 +22,7 @@ while True:
         if y in cities:
             print ("Found new city "+ y) 
             client.messages.create(to=myPhone, from_=TwilioNumber,
-               body='Good News: Rammstein Tix available in ' + y+  u'\U0001f680')
+               body='Good News: Rammstein Tix available at http://bit.ly/2EOTQQ0' + u'\U0001f680')
         else:
             print ("Found nothing new") 
     time.sleep(60)
