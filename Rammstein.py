@@ -17,12 +17,10 @@ while True:
     response = requests.get(url)
     soup = BeautifulSoup(response.content.decode('utf-8', 'ignore'), 'html.parser', )
     data = soup.find_all("li", {'class':'Dropdown-ValuesEntry'})
+   
     for x in data: 
         y = x.string.strip().lower().encode('utf-8')
         if y in cities:
             print ("Found new city "+ y) 
-            client.messages.create(to=myPhone, from_=TwilioNumber,
-               body='Good News: Rammstein Tix available at http://bit.ly/2EOTQQ0')
-        else:
-            print ("Found nothing new") 
+            client.messages.create(to=myPhone, from_=TwilioNumber, body='Good News: Rammstein Tix available at http://bit.ly/2EOTQQ0')
     time.sleep(60)
