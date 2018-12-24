@@ -1,37 +1,27 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[129]:
-
-
 from bs4 import BeautifulSoup
 import requests
+from twilio.rest import Client
 
+account_sid = 'AC1304dbfe60325948xxxxxxxxxx' # Found on Twilio Console Dashboard
+auth_token = 'e8043b9284969caxxxxxxxxxxxxxx' # Found on Twilio Console Dashboard
 
-# In[167]:
+myPhone = '+49172xxxxxxx' # Phone number you used to verify your Twilio account
+TwilioNumber = '+1xxxxxxxxx' # Phone number given to you by Twilio
 
+client = Client(account_sid, auth_token)
 
-# Here, we're just importing both Beautiful Soup and the Requests library
 url = 'https://www.fansale.de/fansale/tickets/hard-heavy/ozzy-osbourne/478'
-# this is the url that we've already determined is safe and legal to scrape from.
 response = requests.get(url)
-# here, we fetch the content from the url, using the requests library
 soup = BeautifulSoup(response.content.decode('utf-8', 'ignore'), 'html.parser', )
-cities = ['BERLIN', 'HAMBURG', 'FRANKFURT']
-
-
-# In[174]:
-
+cities = ['BERLIN']
 
 data = soup.find_all("li", {'class':'Dropdown-ValuesEntry'})
 for x in data: 
     y = x.string.strip().encode('utf-8')
     if y in cities:
         print ("Found new city "+ y) 
-
-
-# In[ ]:
-
-
-
+        client.messages.create(
+  			to=myPhone,
+ 			from_=TwilioNumber,
+  			body='I sent a text message from Python! ' + u'\U0001f680')
 
