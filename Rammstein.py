@@ -29,9 +29,8 @@ while True:
             y = x.string.strip().lower().encode('utf-8')
             print
             if y in cities:
-                print ("Found new city "+ y) 
-                #client.messages.create(to=myPhone, from_=TwilioNumber,
-                 #  body='Good News: Rammstein Tix available at http://bit.ly/2EOTQQ0')
+                client.messages.create(to=myPhone, from_=TwilioNumber,
+                body='Good News: Rammstein Tix available at http://bit.ly/2EOTQQ0')
         sleeptime = 300+random.randint(100,200)    
         #print 'sleeping ' + str(sleeptime) + ' seconds' 
         now = datetime.datetime.now()
