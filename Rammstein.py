@@ -32,7 +32,6 @@ while True:
                 client.messages.create(to=myPhone, from_=TwilioNumber,
                 body='Good News: Rammstein Tix available at http://bit.ly/2EOTQQ0')
         sleeptime = 300+random.randint(100,200)    
-        #print 'sleeping ' + str(sleeptime) + ' seconds' 
         now = datetime.datetime.now()
         if (now.hour==9) and (now.minute<15):
                 client.messages.create(to=myPhone, from_=TwilioNumber,
